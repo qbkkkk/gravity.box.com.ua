@@ -281,7 +281,7 @@ systemButtons.forEach(btn => {
 </section>
 
     <!-- Benefits for Electricians -->
-    <section class="py-20 bg-white">
+   <section class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">
       Переваги для електрика
@@ -290,8 +290,7 @@ systemButtons.forEach(btn => {
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
       <!-- 1. Швидкий монтаж -->
-      <div
-        class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+      <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
         <div class="mb-4">
           <i data-lucide="clock" class="w-8 h-8 text-yellow-500 mb-2"></i>
           <h3 class="text-xl font-semibold">Швидкий монтаж</h3>
@@ -309,8 +308,7 @@ systemButtons.forEach(btn => {
       </div>
 
       <!-- 2. Вища маржа -->
-      <div
-        class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+      <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
         <div class="mb-4">
           <i data-lucide="dollar-sign" class="w-8 h-8 text-yellow-500 mb-2"></i>
           <h3 class="text-xl font-semibold">Вища маржа</h3>
@@ -319,7 +317,7 @@ systemButtons.forEach(btn => {
           <p class="text-slate-600">
             Збільшення прибутку в 3-4 рази порівняно зі стандартними роботами
           </p>
-          <a href="#"
+          <a href="#" id="profitButton"
             class="border border-slate-300 hover:bg-yellow-400 hover:text-black w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
             <i data-lucide="calculator" class="w-4 h-4"></i>
             Розрахувати прибуток
@@ -328,8 +326,7 @@ systemButtons.forEach(btn => {
       </div>
 
       <!-- 3. Простота установки -->
-      <div
-        class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+      <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
         <div class="mb-4">
           <i data-lucide="wrench" class="w-8 h-8 text-yellow-500 mb-2"></i>
           <h3 class="text-xl font-semibold">Простота установки</h3>
@@ -347,8 +344,7 @@ systemButtons.forEach(btn => {
       </div>
 
       <!-- 4. Підтримка 24/7 -->
-      <div
-        class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+      <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
         <div class="mb-4">
           <i data-lucide="users" class="w-8 h-8 text-yellow-500 mb-2"></i>
           <h3 class="text-xl font-semibold">Підтримка 24/7</h3>
@@ -366,8 +362,7 @@ systemButtons.forEach(btn => {
       </div>
 
       <!-- 5. Престиж -->
-      <div
-        class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+      <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
         <div class="mb-4">
           <i data-lucide="star" class="w-8 h-8 text-yellow-500 mb-2"></i>
           <h3 class="text-xl font-semibold">Престиж</h3>
@@ -385,8 +380,7 @@ systemButtons.forEach(btn => {
       </div>
 
       <!-- 6. Готова документація -->
-      <div
-        class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+      <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
         <div class="mb-4">
           <i data-lucide="file-text" class="w-8 h-8 text-yellow-500 mb-2"></i>
           <h3 class="text-xl font-semibold">Готова документація</h3>
@@ -407,14 +401,12 @@ systemButtons.forEach(btn => {
   </div>
 </section>
 
-<!-- Модальне вікно -->
+<!-- Модальне відео -->
 <div id="videoModal"
   class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50">
   <div class="relative w-full max-w-4xl h-[80vh] bg-black rounded-xl overflow-hidden shadow-lg">
     <video id="promoVideo" class="w-full h-full object-contain" controls autoplay>
-      <source
-        src="https://res.cloudinary.com/dzjg3rhyu/video/upload/v1759091469/Gravity_box.mp4"
-        type="video/mp4">
+      <source src="https://res.cloudinary.com/dzjg3rhyu/video/upload/v1759091469/Gravity_box.mp4" type="video/mp4">
       Ваш браузер не підтримує відео.
     </video>
     <button id="closeModal"
@@ -424,39 +416,33 @@ systemButtons.forEach(btn => {
   </div>
 </div>
 
+<!-- Модальний калькулятор -->
+<div id="profitModal"
+  class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50">
+  <div class="relative w-full max-w-md bg-white rounded-xl p-6 shadow-lg">
+    <h3 class="text-2xl font-bold mb-6 text-center text-slate-900">Калькулятор прибутку</h3>
+    
+    <label class="block mb-2 text-slate-700 font-medium">Вартість однієї роботи (€):</label>
+    <input type="number" id="jobCost" class="w-full border border-slate-300 rounded px-3 py-2 mb-4 focus:ring-2 focus:ring-yellow-400 focus:outline-none" placeholder="Наприклад 100">
+    
+    <label class="block mb-2 text-slate-700 font-medium">Кількість робіт:</label>
+    <input type="number" id="jobCount" class="w-full border border-slate-300 rounded px-3 py-2 mb-4 focus:ring-2 focus:ring-yellow-400 focus:outline-none" placeholder="Наприклад 5">
+    
+    <div class="text-center">
+      <p id="profitResult" class="text-lg font-semibold text-yellow-500 mt-4 transition-colors"></p>
+    </div>
+
+    <button id="closeProfitModal"
+      class="absolute top-3 right-3 text-black bg-gray-200 rounded-full p-2 hover:bg-yellow-400 hover:text-black transition">
+      ✕
+    </button>
+  </div>
+</div>
+
 <script>
-  const promoButton = document.getElementById("promoButton");
-  const videoModal = document.getElementById("videoModal");
-  const promoVideo = document.getElementById("promoVideo");
-  const closeModal = document.getElementById("closeModal");
+  // Відео модалка
+  const promoButton = document.getElementById
 
-  // Відкрити модалку
-  promoButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    videoModal.classList.remove("hidden");
-    promoVideo.currentTime = 0;
-    promoVideo.play();
-  });
-
-  // Закрити при натисканні на хрестик
-  closeModal.addEventListener("click", () => {
-    videoModal.classList.add("hidden");
-    promoVideo.pause();
-  });
-
-  // Закрити при кліку поза відео
-  videoModal.addEventListener("click", (e) => {
-    if (e.target === videoModal) {
-      videoModal.classList.add("hidden");
-      promoVideo.pause();
-    }
-  });
-
-  // Автозакриття після завершення
-  promoVideo.addEventListener("ended", () => {
-    videoModal.classList.add("hidden");
-  });
-</script>
 
 
     <!-- How it Works -->
