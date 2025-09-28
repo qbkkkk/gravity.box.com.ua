@@ -1253,11 +1253,9 @@ chatButton.addEventListener("click", e => {
 // Щоб кліки всередині чату не закривали його
 chatWidget.addEventListener("click", e => e.stopPropagation());
 
-// Клік по кнопці
-chatButton.addEventListener("click", e => {
-  e.stopPropagation(); // щоб клік по кнопці не закривав чат
-  chatWidget.classList.toggle("open");
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+// Закриття чату при кліку поза ним
+window.addEventListener("click", () => {
+  chatWidget.classList.remove("open");
 });
 
 // Клік всередині чату
