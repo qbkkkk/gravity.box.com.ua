@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity Box - для електриків</title>
+    <meta name="description" content="Готовий електрощит з вбудованим Розумним Домом для встановлення електриками">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#ffffff',
+                        foreground: '#262626',
+                        card: '#ffffff',
+                        'card-foreground': '#262626',
+                        primary: '#030213',
+                        'primary-foreground': '#ffffff',
+                        secondary: '#f1f5f9',
+                        'secondary-foreground': '#030213',
+                        muted: '#ececf0',
+                        'muted-foreground': '#717182',
+                        accent: '#e9ebef',
+                        'accent-foreground': '#030213',
+                        destructive: '#d4183d',
+                        'destructive-foreground': '#ffffff',
+                        border: 'rgba(0, 0, 0, 0.1)',
+                        ring: '#64748b'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(2rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-2rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+        
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.7s ease-out forwards;
+        }
+        
+        .opacity-0 {
+            opacity: 0;
+        }
+        
+        /* Accordion styles */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion-content.open {
+            max-height: 200px;
+        }
+        
+        .accordion-trigger::after {
+            content: '+';
+            float: right;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-trigger.open::after {
+            transform: rotate(45deg);
+        }
+        
+        /* Tech pattern background */
+        .tech-pattern {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Hero Section -->
+<section class="relative overflow-hidden bg-gradient-to-br from-black via-orange-900 to-orange-800 min-h-[120vh] pt-16">
+     <!-- Tech Background Pattern -->
+    <div class="absolute inset-0 opacity-10 tech-pattern"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Ліва колонка -->
+            <div class="space-y-8 -mt-10 pl-8 lg:pl-16">
+    <!-- Логотип -->
+    <img src="https://gravity.com.ua/wp-content/uploads/2016/04/Logo_for_site-min.png" 
+         alt="Gravity Box Logo" 
+         class="h-16 w-auto">
+
+    <div class="space-y-4 ">
+        <h1 class="text-5xl font-bold text-white">
+            Gravity Box
+            <span class="block text-yellow-400">для електриків</span>
+        </h1>
+        <p class="text-xl text-orange-200">
+            Готовий електрощит<br>
+            з вбудованим Розумним Домом<br>
+            для встановлення електриками
+        </p>
+    </div>
+                
+        <div class="space-y-4">
+            <!-- пункти -->
+            <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                <span class="text-orange-200">Детальний проєкт електрики</span>
+            </div>
+            <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                <span class="text-orange-200">Навчання з підключення</span>
+            </div>
+            <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                <span class="text-orange-200">Преміальна електрика та європейське обладнання</span>
+            </div>
+            <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                <span class="text-orange-200">Технічна підтримка 24/7</span>
+            </div>
+        </div>
+
+        <div class="flex gap-4 flex-wrap pl-2 lg:pl-4 mb-24 pb-12">
+        <a href="https://gravity.com.ua/kontakty/" target="_blank"
+           class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4"></i>
+            <span>Замовити щит</span>
+        </a>
+
+        <a href="#cons"
+           class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Стати партнером</span>
+        </a>
+        </div>
+    </div>
+            
+    <!-- Права колонка: панель -->
+    <div class="relative">
+        <div class="bg-gradient-to-br from-orange-700 to-orange-800 p-8 rounded-2xl shadow-2xl border border-orange-600">
+            <!-- Main Panel -->
+            <div class="bg-orange-900 rounded-xl p-6 mb-6 border border-orange-600">
+                <div class="text-center mb-4">
+                    <h3 class="text-white font-semibold">Gravity Smart Panel</h3>
+                    <div class="w-full h-2 bg-orange-700 rounded-full mt-2">
+                        <div class="w-3/4 h-full bg-green-500 rounded-full"></div>
+                    </div>
+                    <span class="text-green-400 text-sm">Система активна</span>
+                </div>
+
+                <!-- System Icons Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="system-btn p-4 rounded-lg border-2 bg-yellow-100 border-yellow-500 text-yellow-500" data-system="power">
+                        <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2"></i>
+                        <span class="text-xs font-medium">Електроживлення</span>
+                    </button>
+                    <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400" data-system="wifi">
+                        <i data-lucide="wifi" class="w-8 h-8 mx-auto mb-2"></i>
+                        <span class="text-xs font-medium">Інтернет & Wi-Fi</span>
+                    </button>
+                    <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400" data-system="security">
+                        <i data-lucide="shield" class="w-8 h-8 mx-auto mb-2"></i>
+                        <span class="text-xs font-medium">Охорона</span>
+                    </button>
+                    <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400" data-system="smart">
+                        <i data-lucide="home" class="w-8 h-8 mx-auto mb-2"></i>
+                        <span class="text-xs font-medium">Розумний дім</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active System Info -->
+            <div class="mt-6 p-4 bg-orange-800/50 rounded-lg border border-orange-600" id="active-info">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="zap" class="w-6 h-6 text-yellow-500" id="active-system-icon"></i>
+                    <div>
+                        <h4 class="text-white font-medium" id="active-system-label">Електроживлення</h4>
+                        <p class="text-orange-400 text-sm" id="active-system-desc">Споживання енергії: 1200 Вт</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+const systemButtons = document.querySelectorAll('.system-btn');
+const activeIcon = document.getElementById('active-system-icon');
+const activeLabel = document.getElementById('active-system-label');
+const activeDesc = document.getElementById('active-system-desc');
+
+// Дані для кожної кнопки
+const systemData = {
+    power: { icon: 'zap', label: 'Електроживлення', desc: 'Споживання енергії: 1200 Вт' },
+    wifi: { icon: 'wifi', label: 'Інтернет & Wi-Fi', desc: 'Підключено 5 пристроїв' },
+    security: { icon: 'shield', label: 'Система безпеки', desc: 'Камери та сенсори активні' },
+    smart: { icon: 'home', label: 'Розумний дім', desc: 'Освітлення та клімат під контролем' },
+};
+
+systemButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const system = btn.getAttribute('data-system');
+        const data = systemData[system];
+
+        // Змінюємо іконку, текст і опис
+        activeIcon.setAttribute('data-lucide', data.icon);
+        activeLabel.textContent = data.label;
+        activeDesc.textContent = data.desc;
+
+        // Перемальовуємо Lucide іконки
+        if (window.lucide) lucide.replace();
+    });
+});
+</script>
+
+
+  <!-- What is Gravity Box -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Текстова частина -->
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900">Що таке Gravity Box?</h2>
+                <p class="text-lg text-slate-600">
+                    Це революційний електричний щит, що об'єднує всі системи розумного дому в одному компактному рішенні. 
+                    Інтернет, Wi-Fi, охорона, відеоспостереження та автоматизація — все працює з одного щита.
+                </p>
+                <p class="text-slate-600">
+                    Замість хаосу кабелів і десятків окремих блоків — одне елегантне рішення, яке електрик може встановити за лічені години.
+                </p>
+            </div>
+
+            <!-- Картинка з hover анімацією -->
+            <div class="relative rounded-xl overflow-hidden shadow-lg transform transition-transform duration-500 hover:-translate-y-4 hover:scale-105">
+                <img src="images/Gravity_Box.png" alt="Gravity Box" class="w-full rounded-xl shadow-xl block">
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+<!-- CSS для анімації появи -->
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+</style>
+
+    <!-- Benefits for Electricians -->
+    <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">Переваги для електрика</h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- 1. Швидкий монтаж -->
+            <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="clock" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Швидкий монтаж</h3>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-slate-600">Встановлення за 2 години замість 2-3 днів традиційного монтажу</p>
+                    <a href="https://gravity.com.ua/elektryka/" target="_blank" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
+                        <i data-lucide="clock" class="w-4 h-4"></i>
+                        Дізнатись більше
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Вища маржа -->
+            <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="dollar-sign" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Вища маржа</h3>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-slate-600">Збільшення прибутку в 3-4 рази порівняно зі стандартними роботами</p>
+                    <a href="#" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
+                        <i data-lucide="calculator" class="w-4 h-4"></i>
+                        Розрахувати прибуток
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. Простота установки -->
+            <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="wrench" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Простота установки</h3>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-slate-600">Готові рішення без необхідності глибокого вивчення IT-технологій</p>
+                    <a href="#" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        Інструкція монтажу
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. Підтримка 24/7 -->
+            <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="users" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Підтримка 24/7</h3>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-slate-600">Технічна підтримка та навчання від команди професіоналів Gravity</p>
+                    <a href="https://gravity.com.ua/kontakty/" target="_blank" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        Зв'язатись з підтримкою
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. Престиж -->
+            <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="star" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Престиж</h3>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-slate-600">Робота з преміум-сегментом та підвищення статусу серед клієнтів</p>
+                    <a href="#" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                        Промо-ролик
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. Готова документація -->
+            <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="file-text" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Готова документація</h3>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-slate-600">Вся проєктна документація та схеми підключення в комплекті</p>
+                    <a href="#" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Завантажити документи
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+    
+    <!-- How it Works -->
+    <section class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Головне правило продажів</h2>
+            <p class="text-xl text-slate-600 mb-12 max-w-3xl mx-auto">
+                Не питати клієнта "Чи потрібен вам розумний дім?". Одразу показувати концепт-проєкт з Gravity.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-gradient-to-br from-red-100 to-red-200 p-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-500 hover:rotate-1 group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-red-600/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="x-circle" class="w-8 h-8 text-red-700 group-hover:scale-110 transition-transform"></i>
+                            <h3 class="text-lg font-semibold text-red-700 group-hover:text-red-800 transition-colors">Звичайний підхід</h3>
+                        </div>
+                        <p class="text-red-600 mb-4 group-hover:text-red-700 transition-colors">"Вам потрібен розумний дім?"</p>
+                        <div class="flex items-center gap-2 justify-center">
+                            <p class="text-2xl font-bold text-red-700 group-hover:text-red-800 transition-colors">Конверсія: 5-10%</p>
+                            <div class="w-6 h-6 bg-red-500 rounded-full animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-emerald-100 to-emerald-200 p-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-500 hover:-rotate-1 group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-emerald-600/10 transform translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-emerald-700 group-hover:scale-110 transition-transform"></i>
+                            <h3 class="text-lg font-semibold text-emerald-700 group-hover:text-emerald-800 transition-colors">З Gravity</h3>
+                        </div>
+                        <p class="text-emerald-600 mb-4 group-hover:text-emerald-700 transition-colors">"Ось ваш майбутній розумний дім"</p>
+                        <div class="flex items-center gap-2 justify-center">
+                            <p class="text-2xl font-bold text-emerald-700 group-hover:text-emerald-800 transition-colors">Конверсія: 45%</p>
+                            <div class="w-6 h-6 bg-emerald-500 rounded-full animate-bounce"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">Для кого Gravity</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
+                    <div class="mb-4">
+                        <i data-lucide="zap" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl font-semibold">Електрики</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-slate-600">Більше послуг - більше прибуток</p>
+                        <div class="space-y-2">
+                            <button class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
+                                Дізнатись більше
+                            </button>
+                            <button class="hover:bg-slate-50 w-full text-xs px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                                <i data-lucide="calculator" class="w-3 h-3 mr-1"></i>
+                                Калькулятор доходу
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
+                    <div class="mb-4">
+                        <i data-lucide="building" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl font-semibold">Будівельники</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-slate-600">Пропонуйте сучасні рішення клієнтам</p>
+                        <div class="space-y-2">
+                            <button class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
+                                Дізнатись більше
+                            </button>
+                            <button class="hover:bg-slate-50 w-full text-xs px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                                <i data-lucide="file-text" class="w-3 h-3 mr-1"></i>
+                                Кейси проєктів
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
+                    <div class="mb-4">
+                        <i data-lucide="home" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl font-semibold">Архітектори</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-slate-600">Інтегруйте розумні технології в проєкти</p>
+                        <div class="space-y-2">
+                            <button class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
+                                Дізнатись більше
+                            </button>
+                            <button class="hover:bg-slate-50 w-full text-xs px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                                <i data-lucide="download" class="w-3 h-3 mr-1"></i>
+                                Технічні специфікації
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
+                    <div class="mb-4">
+                        <i data-lucide="user" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl font-semibold">Власники</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-slate-600">Отримайте розумний дім без клопоту</p>
+                        <div class="space-y-2">
+                            <button class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                                <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
+                                Дізнатись більше
+                            </button>
+                            <button class="hover:bg-slate-50 w-full text-xs px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                                <i data-lucide="phone" class="w-3 h-3 mr-1"></i>
+                                Безкоштовна консультація
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-20 bg-slate-900 text-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Нам довіряють</h2>
+      <p class="text-xl text-slate-300">800+ щитів встановлено у провідних ЖК України</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center items-stretch gap-8">
+
+      <!-- Картинка ліворуч, зменшена на 25%, симетрично центрується -->
+      <div class="opacity-0 animate-card flex flex-col items-center justify-center" data-delay="200" style="flex: 0 0 33%;">
+        <img src="images/3D house (1).png" alt="Gravity Box"
+             class="w-full h-auto max-w-[80%] transition-transform duration-500 transform hover:scale-90
+                    filter drop-shadow-[0_0_30px_rgba(0,0,0,0.3)]">
+        <h3 class="font-semibold mt-4 mb-2 text-center">ЖК Преміум-класу</h3>
+        <p class="text-slate-400 text-center">150+ квартир</p>
+      </div>
+
+      <!-- Два статистичні блоки -->
+      <div class="flex flex-col justify-center gap-4 flex-1">
+        <div class="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors duration-300 text-center opacity-0 animate-card flex flex-col justify-center" data-delay="400">
+          <div class="text-4xl font-bold text-yellow-500 mb-2 animate-pulse">800+</div>
+          <p class="text-slate-300">Встановлених щитів</p>
+        </div>
+        <div class="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors duration-300 text-center opacity-0 animate-card flex flex-col justify-center" data-delay="400">
+          <div class="text-4xl font-bold text-yellow-500 mb-2 animate-pulse">95%</div>
+          <p class="text-slate-300">Задоволених клієнтів</p>
+        </div>
+      </div>
+
+      <!-- Три кнопки -->
+      <div class="flex flex-col justify-center gap-4 flex-1">
+        <a href="https://gravity.com.ua/nashi-proekty/" class="block opacity-0 animate-card" data-delay="600">
+          <div class="bg-slate-800 rounded-lg p-4 hover:bg-slate-700 hover:scale-105 transition-all duration-300 text-center h-full flex flex-col justify-center">
+            <h4 class="font-semibold mb-2">Проєкт "Континент"</h4>
+            <p class="text-slate-400 text-sm">Провідний девелопер</p>
+          </div>
+        </a>
+        <a href="https://gravity.com.ua/nashi-proekty/" class="block opacity-0 animate-card" data-delay="650">
+          <div class="bg-slate-800 rounded-lg p-4 hover:bg-slate-700 hover:scale-105 transition-all duration-300 text-center h-full flex flex-col justify-center">
+            <h4 class="font-semibold mb-2">ЖК "Науковий"</h4>
+            <p class="text-slate-400 text-sm">Будівельна компанія</p>
+          </div>
+        </a>
+        <a href="https://gravity.com.ua/nashi-proekty/" class="block opacity-0 animate-card" data-delay="700">
+          <div class="bg-slate-800 rounded-lg p-4 hover:bg-slate-700 hover:scale-105 transition-all duration-300 text-center h-full flex flex-col justify-center">
+            <h4 class="font-semibold mb-2">ЖК "SOHO Residence"</h4>
+            <p class="text-slate-400 text-sm">Будівельна компанія</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- How to Start -->
+      <section class="py-20 bg-slate-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">
+      Як почати роботу з Gravity
+    </h2>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <!-- Ліва частина (текст) -->
+      <div class="space-y-8">
+        <div class="flex items-start gap-4 opacity-0 animate-step" data-delay="0">
+          <div class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center font-bold hover:scale-110 transition-transform duration-300">
+            1
+          </div>
+          <div class="hover:transform hover:scale-105 transition-transform duration-300">
+            <h3 class="font-semibold mb-2">Подайте заявку</h3>
+            <p class="text-slate-600">
+              Зателефонуйте або залишайте заявку на сайті
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 opacity-0 animate-step" data-delay="200">
+          <div class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center font-bold hover:scale-110 transition-transform duration-300">
+            2
+          </div>
+          <div class="hover:transform hover:scale-105 transition-transform duration-300">
+            <h3 class="font-semibold mb-2">Отримайте навчання</h3>
+            <p class="text-slate-600">
+              Пройдіть безкоштовне онлайн-навчання за 2 години
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 opacity-0 animate-step" data-delay="400">
+          <div class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center font-bold hover:scale-110 transition-transform duration-300">
+            3
+          </div>
+          <div class="hover:transform hover:scale-105 transition-transform duration-300">
+            <h3 class="font-semibold mb-2">Замовте щит</h3>
+            <p class="text-slate-600">
+              Виберіть потрібну конфігурацію та зробіть замовлення
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 opacity-0 animate-step" data-delay="600">
+          <div class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center font-bold hover:scale-110 transition-transform duration-300">
+            4
+          </div>
+          <div class="hover:transform hover:scale-105 transition-transform duration-300">
+            <h3 class="font-semibold mb-2">Почніть заробляти</h3>
+            <p class="text-slate-600">
+              Встановлюйте та отримуйте в 3-4 рази більший прибуток
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 flex-wrap">
+    <a href="https://gravity.com.ua/kontakty/" target="_blank" class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
+        <i data-lucide="phone" class="w-4 h-4"></i>
+        <span>Замовити щит</span>
+    </a>
+        
+          <button class="border border-slate-300 hover:bg-slate-50 hover:scale-105 transition-all px-6 py-3 rounded-lg font-medium inline-flex items-center">
+            <i data-lucide="file-text" class="w-4 h-4 mr-2"></i>
+            Завантажити документацію
+          </button>
+        </div>
+      </div>
+
+     <section>
+        <!-- Права частина (картинка з блоками) -->
+<div class="max-w-[1200px] ml-[-100px] px-4 grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+  <!-- Блок 1 -->
+  <div class="flex h-[140px] shadow-lg rounded-2xl overflow-hidden transform transition-transform duration-500 hover:scale-105">
+    <div class="bg-emerald-500 text-white px-6 py-4 flex items-center justify-center font-semibold break-words overflow-hidden leading-tight w-[200px]">
+      Подвоєння кабелізації
+    </div>
+    <div class="bg-white text-slate-700 px-6 py-4 flex items-center justify-center w-[400px] text-center">
+      Ефективне подвоєння кабелізації на існуючому об’єкті по електро-проєкту.
+    </div>
+  </div>
+
+  <!-- Блок 2 -->
+  <div class="flex h-[140px] shadow-lg rounded-2xl overflow-hidden transform transition-transform duration-500 hover:scale-105">
+    <div class="bg-indigo-500 text-white px-6 py-4 flex items-center justify-center font-semibold break-words overflow-hidden leading-tight w-[200px]">
+      Комісія з щита
+    </div>
+    <div class="bg-white text-slate-700 px-6 py-4 flex items-center justify-center w-[400px] text-center">
+      Отримуйте чистий дохід від 25 000 до 100 000 грн і більше за кожен щит.
+    </div>
+  </div>
+
+  <!-- Блок 3 -->
+  <div class="flex h-[140px] shadow-lg rounded-2xl overflow-hidden transform transition-transform duration-500 hover:scale-105">
+    <div class="bg-yellow-500 text-white px-6 py-4 flex items-center justify-center font-semibold break-words overflow-hidden leading-tight w-[200px]">
+      Економія часу
+    </div>
+    <div class="bg-white text-slate-700 px-6 py-4 flex items-center justify-center w-[400px] text-center">
+      Економте час: всі погодження та організаційні питання бере на себе Gravity.
+    </div>
+  </div>
+
+  <!-- Блок 4 -->
+  <div class="flex h-[140px] shadow-lg rounded-2xl overflow-hidden transform transition-transform duration-500 hover:scale-105">
+    <div class="bg-orange-500 text-white px-6 py-4 flex items-center justify-center font-semibold break-words overflow-hidden leading-tight w-[200px]">
+      Партнерство
+    </div>
+    <div class="bg-white text-slate-700 px-6 py-4 flex items-center justify-center w-[400px] text-center">
+      Постійним партнерам ми передаємо власні об’єкти для монтажу.
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+         
+    </section>
+
+    <!-- FAQ -->
+   <section class="py-20 bg-white">
+  <div class="container mx-auto px-4 max-w-3xl">
+    <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">
+      Часті питання
+    </h2>
+
+    <div class="space-y-4">
+      <!-- FAQ Item -->
+      <div class="group border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+        <div
+          class="flex justify-between items-center px-6 py-4 cursor-pointer text-slate-800 font-medium hover:bg-slate-50 transition"
+        >
+          <span>Скільки часу потрібно на встановлення Gravity?</span>
+          <span class="icon text-2xl transition-transform duration-300 group-hover:rotate-45">+</span>
+        </div>
+        <div
+          class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-40"
+        >
+          <div class="px-6 pb-4 text-slate-600">
+            Стандартне встановлення займає 2-3 години для досвідченого електрика.
+            Це включає монтаж щита, підключення всіх систем та базове налаштування.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="group border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+        <div
+          class="flex justify-between items-center px-6 py-4 cursor-pointer text-slate-800 font-medium hover:bg-slate-50 transition"
+        >
+          <span>Чи потрібні спеціальні знання для роботи з системою?</span>
+          <span class="icon text-2xl transition-transform duration-300 group-hover:rotate-45">+</span>
+        </div>
+        <div
+          class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-40"
+        >
+          <div class="px-6 pb-4 text-slate-600">
+            Ні, спеціальних IT-знань не потрібно. Ми надаємо повне навчання,
+            всю документацію та цілодобову технічну підтримку.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="group border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+        <div
+          class="flex justify-between items-center px-6 py-4 cursor-pointer text-slate-800 font-medium hover:bg-slate-50 transition"
+        >
+          <span>Яка гарантія на обладнання Gravity?</span>
+          <span class="icon text-2xl transition-transform duration-300 group-hover:rotate-45">+</span>
+        </div>
+        <div
+          class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-40"
+        >
+          <div class="px-6 pb-4 text-slate-600">
+            Ми надаємо 2 роки гарантії на всі компоненти системи та безкоштовну
+            заміну обладнання у разі технічних несправностей.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="group border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+        <div
+          class="flex justify-between items-center px-6 py-4 cursor-pointer text-slate-800 font-medium hover:bg-slate-50 transition"
+        >
+          <span>Як стати офіційним партнером Gravity?</span>
+          <span class="icon text-2xl transition-transform duration-300 group-hover:rotate-45">+</span>
+        </div>
+        <div
+          class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-40"
+        >
+          <div class="px-6 pb-4 text-slate-600">
+            Подайте заявку через форму на сайті або зателефонуйте нам. Після
+            співбесіди та навчання ви отримаєте статус офіційного партнера.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll(".accordion-trigger").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-target");
+      const content = document.getElementById(targetId);
+      const icon = btn.querySelector(".icon");
+
+      // Закриваємо інші відкриті акордеони
+      document.querySelectorAll(".accordion-content").forEach((c) => {
+        if (c !== content) {
+          c.style.maxHeight = null;
+          c.previousElementSibling.querySelector(".icon").textContent = "+";
+          c.previousElementSibling
+            .querySelector(".icon")
+            .classList.remove("rotate-45");
+        }
+      });
+
+      // Тогл поточного
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        icon.textContent = "+";
+        icon.classList.remove("rotate-45");
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        icon.textContent = "×";
+        icon.classList.add("rotate-45");
+      }
+    });
+  });
+</script>
+
+<style>
+.icon {
+  font-size: 20px;
+  font-weight: bold;
+}
+.rotate-45 {
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+</style>
+
+
+    <!-- Final CTA -->
+    <section class="py-20 bg-slate-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">
+                Gravity Box -<br>
+                <span class="text-yellow-500">легкий монтаж, задоволені клієнти, зростаючий прибуток</span>
+            </h2>
+            <p class="text-xl text-slate-300 mb-12 max-w-2xl mx-auto">
+                Ставай партнером і заробляй у 3–4 рази більше разом із сучасними технологіями Розумного Дому
+            </p>
+
+            <div class="flex justify-center gap-6 flex-wrap">
+  <a href="https://gravity.com.ua/kontakty/" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-lg font-medium inline-flex items-center gap-2">
+    <i data-lucide="phone" class="w-5 h-5"></i>
+    <span>Отримати консультацію</span>
+  </a>
+
+  <a href="https://gravity.com.ua/kontakty/">
+    <button class="bg-yellow-500 hover:bg-yellow-400 text-black px-8 py-3 rounded-lg font-medium inline-flex items-center gap-2 hover:scale-105 transition-all">
+      <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      Стати партнером
+    </button>
+  </a>
+</div>
+
+           <footer class="w-full py-6">
+    <div class="container mx-auto flex justify-center">
+      <p class="text-slate-400 text-center">
+        © 2025 Gravity. Всі права захищені. |
+        <span class="ml-2">Телефон: (044) 466 7 333, (067) 466 7 333</span> |
+        <span class="ml-2">Email: promo@gravity.com.ua</span>
+      </p>
+    </div>
+  </footer>
+</div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // System switching functionality
+        const systems = {
+            power: { icon: 'zap', color: 'text-yellow-500', bg: 'bg-yellow-100', label: 'Електроживлення' },
+            wifi: { icon: 'wifi', color: 'text-blue-500', bg: 'bg-blue-100', label: 'Інтернет & Wi-Fi' },
+            security: { icon: 'shield', color: 'text-green-500', bg: 'bg-green-100', label: 'Охорона' },
+            smart: { icon: 'home', color: 'text-purple-500', bg: 'bg-purple-100', label: 'Розумний дім' }
+        };
+
+        document.querySelectorAll('.system-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const system = btn.dataset.system;
+                const systemData = systems[system];
+                
+                // Update button states
+                document.querySelectorAll('.system-btn').forEach(b => {
+                    b.className = 'system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400 hover:border-orange-500 transition-all hover:scale-105';
+                });
+                
+                btn.className = `system-btn p-4 rounded-lg border-2 ${systemData.bg} border-current ${systemData.color} transition-all hover:scale-105`;
+                
+                // Update active system display
+                const activeIcon = document.getElementById('active-system-icon');
+                const activeLabel = document.getElementById('active-system-label');
+                
+                activeIcon.setAttribute('data-lucide', systemData.icon);
+                activeIcon.className = `w-6 h-6 ${systemData.color}`;
+                activeLabel.textContent = systemData.label;
+                
+                // Reinitialize icons
+                lucide.createIcons();
+            });
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const target = document.getElementById(trigger.dataset.target);
+                const isOpen = target.classList.contains('open');
+                
+                // Close all accordions
+                document.querySelectorAll('.accordion-content').forEach(content => {
+                    content.classList.remove('open');
+                });
+                document.querySelectorAll('.accordion-trigger').forEach(t => {
+                    t.classList.remove('open');
+                });
+                
+                // Open clicked accordion if it wasn't open
+                if (!isOpen) {
+                    target.classList.add('open');
+                    trigger.classList.add('open');
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const delay = element.dataset.delay || 0;
+                    
+                    setTimeout(() => {
+                        if (element.classList.contains('animate-card')) {
+                            element.classList.remove('opacity-0');
+                            element.classList.add('animate-fade-in-up');
+                        } else if (element.classList.contains('animate-step')) {
+                            element.classList.remove('opacity-0');
+                            element.classList.add('animate-fade-in-left');
+                        }
+                    }, delay);
+                    
+                    observer.unobserve(element);
+                }
+            });
+        }, observerOptions);
+
+        // Observe animated elements
+        document.querySelectorAll('.animate-card, .animate-step').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize all icons
+        lucide.createIcons();
+
+        // Initialize all icons
+        lucide.createIcons();
+
+        // =========================
+        // Модальное окно (форма)
+        // =========================
+        const modal = document.getElementById("modal");
+        const openBtn = document.getElementById("cons"); // кнопка "Отримати консультацію"
+        const closeBtn = document.getElementById("closeModal");
+
+        if (openBtn) {
+          openBtn.onclick = () => modal.style.display = "block";
+        }
+        if (closeBtn) {
+          closeBtn.onclick = () => modal.style.display = "none";
+        }
+        window.onclick = (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        };
+    </script>
+        
+<!-- Кнопка та чат -->
+<div id="gravity-chat-button">
+  <!-- SVG іконка -->
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M20 2H4C2.897 2 2 2.897 2 4V22L6 18H20C21.103 18 22 17.103 22 16V4C22 2.897 21.103 2 20 2Z"/>
+  </svg>
+</div>
+
+<div id="gravity-chat-widget">
+  <div id="chat-header">Gravity Помічник</div>
+  <div id="chat-messages"></div>
+  <input id="chat-input" type="text" placeholder="Напиши повідомлення..." />
+</div>
+
+<style>
+/* Кнопка чату (жовта) */
+#gravity-chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD93D, #FFC107);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10000;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease;
+}
+#gravity-chat-button:hover {
+  transform: scale(1.1);
+}
+
+/* Чат-виджет */
+#gravity-chat-widget {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  font-family: "Segoe UI", sans-serif;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+
+/* Відкритий стан */
+#gravity-chat-widget.open {
+  max-height: 550px;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Шапка (жовта) */
+#chat-header {
+  background: linear-gradient(135deg, #FFD93D, #FFC107);
+  color: #333;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background: #f3f6fa;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#chat-messages div {
+  padding: 9px 12px;
+  border-radius: 14px;
+  max-width: 80%;
+  word-wrap: break-word;
+  animation: fadeInUp 0.3s ease;
+}
+
+.user-message {
+  background: #d1e7dd;
+  color: #0f5132;
+  align-self: flex-end;
+}
+.ai-message {
+  background: #fff3cd;
+  color: #664d03;
+  align-self: flex-start;
+}
+
+/* Анімація повідомлень */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#chat-input {
+  border: none;
+  border-top: 1px solid #ddd;
+  padding: 12px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #1a1a1a;
+}
+#chat-input::placeholder {
+  color: #888;
+}
+</style>
+
+<script>
+const chatButton = document.getElementById("gravity-chat-button");
+const chatWidget = document.getElementById("gravity-chat-widget");
+const chatInput = document.getElementById("chat-input");
+const chatMessages = document.getElementById("chat-messages");
+const WEBHOOK_URL = "https://qbkkkk.app.n8n.cloud/webhook/gravity-chat";
+
+// Відкриття/закриття чату
+chatButton.addEventListener("click", () => {
+  chatWidget.classList.toggle("open");
+});
+
+// Закривається при скролінгу сторінки
+window.addEventListener("scroll", () => {
+  if(chatWidget.classList.contains("open")) {
+    chatWidget.classList.remove("open");
+  }
+});
+
+// Додаємо повідомлення
+function addMessage(text, sender="user") {
+  const div = document.createElement("div");
+  div.textContent = text;
+  div.className = sender === "user" ? "user-message" : "ai-message";
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Відправка повідомлення
+chatInput.addEventListener("keydown", function(e) {
+  if(e.key === "Enter" && chatInput.value.trim() !== "") {
+    const message = chatInput.value.trim();
+    addMessage(message, "user");
+    chatInput.value = "";
+
+    fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userMessage: message })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.reply) {
+        addMessage(data.reply, "ai");
+      } else {
+        addMessage("Відповідь недоступна", "ai");
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      addMessage("Помилка при відправці повідомлення", "ai");
+    });
+  }
+});
+</script>
+
+</body>
+</html>
