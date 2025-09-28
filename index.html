@@ -972,30 +972,145 @@ systemButtons.forEach(btn => {
         };
     </script>
         
-<!-- Кнопка та чат -->
-<!-- HTML -->
-<!-- Підключаємо Fuse.js -->
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.7.4"></script>
+<!-- Чат HTML -->
+<div id="gravity-chat-button">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M20 2H4C2.897 2 2 2.897 2 4V22L6 18H20C21.103 18 22 17.103 22 16V4C22 2.897 21.103 2 20 2Z"/>
+  </svg>
+</div>
 
+<div id="gravity-chat-widget">
+  <div id="chat-header">Gravity Помічник</div>
+  <div id="chat-messages"></div>
+  <input id="chat-input" type="text" placeholder="Напиши повідомлення..." />
+</div>
+
+<!-- CSS -->
+<style>
+#gravity-chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD93D, #FFC107);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10000;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease;
+}
+#gravity-chat-button:hover { transform: scale(1.1); }
+
+#gravity-chat-widget {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  font-family: "Segoe UI", sans-serif;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease, bottom 0.3s ease;
+  z-index: 9999;
+}
+#gravity-chat-widget.open {
+  max-height: 550px;
+  opacity: 1;
+  transform: scale(1);
+}
+
+#chat-header {
+  background: linear-gradient(135deg, #FFD93D, #FFC107);
+  color: #333;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background: #f3f6fa;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#chat-messages div {
+  padding: 9px 12px;
+  border-radius: 14px;
+  max-width: 80%;
+  word-wrap: break-word;
+  animation: fadeInUp 0.3s ease;
+}
+
+.user-message {
+  background: #d1e7dd;
+  color: #0f5132;
+  align-self: flex-end;
+}
+
+.ai-message {
+  background: #fff3cd;
+  color: #664d03;
+  align-self: flex-start;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#chat-input {
+  border: none;
+  border-top: 1px solid #ddd;
+  padding: 12px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #1a1a1a;
+}
+#chat-input::placeholder { color: #888; }
+
+@media (max-width: 640px) {
+  #gravity-chat-widget {
+    width: 90%;
+    right: 5%;
+    bottom: 20px;
+    max-height: 70vh;
+  }
+}
+</style>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.7.4"></script>
 <script>
-// Контент сайту для пошуку
 const siteData = [
   { title: "Про Gravity Box", content: "Gravity Box — це готовий електрощит з вбудованим розумним домом, який можна встановити на об'єкті за короткий час." },
   { title: "Переваги", content: "Подвоєння кабелізації, економія часу, партнерство, комісія з щита, постійні об’єкти для монтажу." },
   { title: "Контакти", content: "Зв’яжіться з нами через форму на сайті або за телефоном для замовлення Gravity Box." }
 ];
 
-// Налаштування Fuse.js
 const fuse = new Fuse(siteData, { keys: ['content'], threshold: 0.4 });
 
-// Пошук відповіді
 function findAnswer(message) {
   const results = fuse.search(message);
   if(results.length > 0) return results[0].item.content;
   return "Вибачте, інформація недоступна на сайті.";
 }
 
-// Чат логіка
 const chatButton = document.getElementById("gravity-chat-button");
 const chatWidget = document.getElementById("gravity-chat-widget");
 const chatInput = document.getElementById("chat-input");
@@ -1014,19 +1129,16 @@ function addMessage(text, sender="user") {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Відправка повідомлення (локальний пошук)
 chatInput.addEventListener("keydown", function(e) {
   if(e.key === "Enter" && chatInput.value.trim() !== "") {
     const message = chatInput.value.trim();
     addMessage(message, "user");
     chatInput.value = "";
-
-    const answer = findAnswer(message);
-    addMessage(answer, "ai");
+    addMessage(findAnswer(message), "ai");
   }
 });
 
-// Піднімання чату на мобільних при клавіатурі
+// Мобільна адаптація
 chatInput.addEventListener("focus", () => { chatWidget.style.bottom = "20%"; chatMessages.scrollTop = chatMessages.scrollHeight; });
 chatInput.addEventListener("blur", () => { chatWidget.style.bottom = "20px"; });
 window.addEventListener("resize", () => { chatMessages.scrollTop = chatMessages.scrollHeight; });
