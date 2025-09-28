@@ -598,77 +598,88 @@ document.addEventListener('DOMContentLoaded', () => {
     </section>
 
     <!-- Target Audience -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">Для кого Gravity</h2>
+   <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">Для кого Gravity</h2>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
-                    <div class="mb-4">
-                        <i data-lucide="zap" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-semibold">Електрики</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <p class="text-slate-600">Більше послуг - більше прибуток</p>
-                        <div class="space-y-2">
-                            <button class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
-                                <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
-                                Дізнатись більше
-                            </button>
-                        </div>
-                    </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Електрики -->
+            <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="zap" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Електрики</h3>
                 </div>
-
-                <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
-                    <div class="mb-4">
-                        <i data-lucide="building" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-semibold">Будівельники</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <p class="text-slate-600">Пропонуйте сучасні рішення клієнтам</p>
-                        <div class="space-y-2">
-                            <button class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
-                                <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
-                                Дізнатись більше
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
-                    <div class="mb-4">
-                        <i data-lucide="home" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-semibold">Архітектори</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <p class="text-slate-600">Інтегруйте розумні технології в проєкти</p>
-                        <div class="space-y-2">
-                            <button class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
-                                <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
-                                Дізнатись більше
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
-                    <div class="mb-4">
-                        <i data-lucide="user" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-semibold">Власники</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <p class="text-slate-600">Отримайте розумний дім без клопоту</p>
-                        <div class="space-y-2">
-                            <button class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
-                                <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
-                                Дізнатись більше
-                            </button>
-                        </div>
+                <div class="space-y-4">
+                    <p class="text-slate-600">Більше послуг - більше прибуток</p>
+                    <div class="space-y-2">
+                        <a href="https://example.com/electricians" 
+                           class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
+                            Дізнатись більше
+                        </a>
                     </div>
                 </div>
             </div>
+
+            <!-- Будівельники -->
+            <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="building" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Будівельники</h3>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-slate-600">Пропонуйте сучасні рішення клієнтам</p>
+                    <div class="space-y-2">
+                        <a href="https://example.com/builders" 
+                           class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
+                            Дізнатись більше
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Архітектори -->
+            <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="home" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Архітектори</h3>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-slate-600">Інтегруйте розумні технології в проєкти</p>
+                    <div class="space-y-2">
+                        <a href="https://example.com/architects" 
+                           class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
+                            Дізнатись більше
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Власники -->
+            <div class="border-0 shadow-lg text-center hover:shadow-xl hover:scale-105 transition-all duration-300 group bg-white rounded-lg p-6">
+                <div class="mb-4">
+                    <i data-lucide="user" class="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-semibold">Власники</h3>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-slate-600">Отримайте розумний дім без клопоту</p>
+                    <div class="space-y-2">
+                        <a href="https://example.com/owners" 
+                           class="border border-slate-300 hover:bg-yellow-500 hover:text-black w-full px-4 py-2 rounded-lg inline-flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-4 h-4 mr-2"></i>
+                            Дізнатись більше
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Social Proof -->
     <section class="py-20 bg-slate-900 text-white">
