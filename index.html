@@ -273,14 +273,15 @@ systemButtons.forEach(btn => {
         </div>
 
         <!-- Картинка -->
-        <div class="relative rounded-xl overflow-hidden shadow-lg transform transition-transform duration-500 hover:-translate-y-4 hover:scale-105">
+        <div class="relative rounded-xl overflow-hidden shadow-lg transform transition-transform duration-500 hover:-translate-y-4 hover:scale-105 animate-fadeIn">
           <img src="images/Gravity_Box.png" alt="Gravity Box" class="w-full rounded-xl shadow-xl block">
         </div>
       </div>
 
       <!-- Права частина: вертикальний банер -->
       <div class="flex justify-center">
-        <img src="images/Frame 217066.png" alt="Gravity Box Banner" class="h-full object-contain rounded-lg shadow-xl">
+        <img src="images/Frame 217066.png" alt="Gravity Box Banner" 
+             class="h-full object-contain rounded-lg shadow-xl animate-fadeIn transition-transform duration-500 hover:scale-105 hover:-translate-y-2">
       </div>
 
     </div>
@@ -288,7 +289,7 @@ systemButtons.forEach(btn => {
 </section>
 
 
-<!-- CSS для анімації появи -->
+<!-- CSS для анімацій -->
 <style>
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -298,6 +299,7 @@ systemButtons.forEach(btn => {
   animation: fadeIn 1s ease-out forwards;
 }
 </style>
+
 
     <!-- Benefits for Electricians -->
     <section class="py-20 bg-white">
