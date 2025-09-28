@@ -973,8 +973,8 @@ systemButtons.forEach(btn => {
     </script>
         
 <!-- Кнопка та чат -->
+<!-- HTML -->
 <div id="gravity-chat-button">
-  <!-- SVG іконка -->
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
     <path d="M20 2H4C2.897 2 2 2.897 2 4V22L6 18H20C21.103 18 22 17.103 22 16V4C22 2.897 21.103 2 20 2Z"/>
   </svg>
@@ -986,8 +986,9 @@ systemButtons.forEach(btn => {
   <input id="chat-input" type="text" placeholder="Напиши повідомлення..." />
 </div>
 
+<!-- CSS -->
 <style>
-/* Кнопка чату (жовта) */
+/* Кнопка чату */
 #gravity-chat-button {
   position: fixed;
   bottom: 20px;
@@ -1004,9 +1005,7 @@ systemButtons.forEach(btn => {
   box-shadow: 0 6px 15px rgba(0,0,0,0.25);
   transition: transform 0.2s ease;
 }
-#gravity-chat-button:hover {
-  transform: scale(1.1);
-}
+#gravity-chat-button:hover { transform: scale(1.1); }
 
 /* Чат-виджет */
 #gravity-chat-widget {
@@ -1024,7 +1023,7 @@ systemButtons.forEach(btn => {
   max-height: 0;
   opacity: 0;
   transform: scale(0.9);
-  transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
+  transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease, bottom 0.3s ease;
   z-index: 9999;
 }
 
@@ -1035,7 +1034,7 @@ systemButtons.forEach(btn => {
   transform: scale(1);
 }
 
-/* Шапка (жовта) */
+/* Шапка чату */
 #chat-header {
   background: linear-gradient(135deg, #FFD93D, #FFC107);
   color: #333;
@@ -1073,7 +1072,6 @@ systemButtons.forEach(btn => {
   align-self: flex-start;
 }
 
-/* Анімація повідомлень */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1089,11 +1087,20 @@ systemButtons.forEach(btn => {
   font-size: 15px;
   color: #1a1a1a;
 }
-#chat-input::placeholder {
-  color: #888;
+#chat-input::placeholder { color: #888; }
+
+/* Мобільна адаптація */
+@media (max-width: 640px) {
+  #gravity-chat-widget {
+    width: 90%;
+    right: 5%;
+    bottom: 20px;
+    max-height: 70vh;
+  }
 }
 </style>
 
+<!-- JS -->
 <script>
 const chatButton = document.getElementById("gravity-chat-button");
 const chatWidget = document.getElementById("gravity-chat-widget");
@@ -1104,9 +1111,10 @@ const WEBHOOK_URL = "https://qbkkkk.app.n8n.cloud/webhook/gravity-chat";
 // Відкриття/закриття чату
 chatButton.addEventListener("click", () => {
   chatWidget.classList.toggle("open");
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
-// Закривається при скролінгу сторінки
+// Закриття при скролі
 window.addEventListener("scroll", () => {
   if(chatWidget.classList.contains("open")) {
     chatWidget.classList.remove("open");
@@ -1136,17 +1144,28 @@ chatInput.addEventListener("keydown", function(e) {
     })
     .then(res => res.json())
     .then(data => {
-      if(data.reply) {
-        addMessage(data.reply, "ai");
-      } else {
-        addMessage("Відповідь недоступна", "ai");
-      }
+      if(data.reply) addMessage(data.reply, "ai");
+      else addMessage("Відповідь недоступна", "ai");
     })
     .catch(err => {
       console.error(err);
       addMessage("Помилка при відправці повідомлення", "ai");
     });
   }
+});
+
+// Піднімання чату при клавіатурі на мобільних
+chatInput.addEventListener("focus", () => {
+  chatWidget.style.bottom = "20%";
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+chatInput.addEventListener("blur", () => {
+  chatWidget.style.bottom = "20px";
+});
+
+// Підтримка resize (наприклад, зміни висоти viewport на мобільних)
+window.addEventListener("resize", () => {
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 </script>
 
