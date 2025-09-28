@@ -972,7 +972,6 @@ systemButtons.forEach(btn => {
         };
     </script>
         
-<!-- Чат HTML -->
 <div id="gravity-chat-button">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
     <path d="M20 2H4C2.897 2 2 2.897 2 4V22L6 18H20C21.103 18 22 17.103 22 16V4C22 2.897 21.103 2 20 2Z"/>
@@ -987,6 +986,7 @@ systemButtons.forEach(btn => {
 
 <!-- CSS -->
 <style>
+/* Кнопка чату */
 #gravity-chat-button {
   position: fixed;
   bottom: 20px;
@@ -1005,6 +1005,7 @@ systemButtons.forEach(btn => {
 }
 #gravity-chat-button:hover { transform: scale(1.1); }
 
+/* Чат-виджет */
 #gravity-chat-widget {
   position: fixed;
   bottom: 90px;
@@ -1017,18 +1018,21 @@ systemButtons.forEach(btn => {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  max-height: 0;
+  transform: scale(0.8);
   opacity: 0;
-  transform: scale(0.9);
-  transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease, bottom 0.3s ease;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   z-index: 9999;
 }
+
+/* Відкритий стан */
 #gravity-chat-widget.open {
-  max-height: 550px;
-  opacity: 1;
   transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
 }
 
+/* Шапка чату */
 #chat-header {
   background: linear-gradient(135deg, #FFD93D, #FFC107);
   color: #333;
@@ -1060,11 +1064,14 @@ systemButtons.forEach(btn => {
   color: #0f5132;
   align-self: flex-end;
 }
-
 .ai-message {
   background: #fff3cd;
   color: #664d03;
   align-self: flex-start;
+}
+.ai-message.loading {
+  font-style: italic;
+  opacity: 0.7;
 }
 
 @keyframes fadeInUp {
@@ -1084,6 +1091,7 @@ systemButtons.forEach(btn => {
 }
 #chat-input::placeholder { color: #888; }
 
+/* Мобільна адаптація */
 @media (max-width: 640px) {
   #gravity-chat-widget {
     width: 90%;
@@ -1095,55 +1103,112 @@ systemButtons.forEach(btn => {
 </style>
 
 <!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.7.4"></script>
 <script>
-const siteData = [
-  { title: "Про Gravity Box", content: "Gravity Box — це готовий електрощит з вбудованим розумним домом, який можна встановити на об'єкті за короткий час." },
-  { title: "Переваги", content: "Подвоєння кабелізації, економія часу, партнерство, комісія з щита, постійні об’єкти для монтажу." },
-  { title: "Контакти", content: "Зв’яжіться з нами через форму на сайті або за телефоном для замовлення Gravity Box." }
-];
-
-const fuse = new Fuse(siteData, { keys: ['content'], threshold: 0.4 });
-
-function findAnswer(message) {
-  const results = fuse.search(message);
-  if(results.length > 0) return results[0].item.content;
-  return "Вибачте, інформація недоступна на сайті.";
-}
-
 const chatButton = document.getElementById("gravity-chat-button");
 const chatWidget = document.getElementById("gravity-chat-widget");
 const chatInput = document.getElementById("chat-input");
 const chatMessages = document.getElementById("chat-messages");
+const WEBHOOK_URL = "https://qbkkkk.app.n8n.cloud/webhook/gravity-chat";
 
+// Відкрити/закрити чат
 chatButton.addEventListener("click", () => {
   chatWidget.classList.toggle("open");
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
+// Закриття при кліку поза вікном
+document.addEventListener("click", (e) => {
+  if (!chatWidget.contains(e.target) && !chatButton.contains(e.target)) {
+    chatWidget.classList.remove("open");
+  }
+});
+
+// Додаємо повідомлення
 function addMessage(text, sender="user") {
   const div = document.createElement("div");
   div.textContent = text;
   div.className = sender === "user" ? "user-message" : "ai-message";
   chatMessages.appendChild(div);
   chatMessages.scrollTop = chatMessages.scrollHeight;
+  saveMessages();
 }
 
+// Loading-стан
+function addLoading() {
+  const div = document.createElement("div");
+  div.textContent = "Набирає повідомлення...";
+  div.className = "ai-message loading";
+  div.id = "loading-msg";
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+function removeLoading() {
+  const el = document.getElementById("loading-msg");
+  if(el) el.remove();
+}
+
+// Відправка повідомлення
 chatInput.addEventListener("keydown", function(e) {
   if(e.key === "Enter" && chatInput.value.trim() !== "") {
     const message = chatInput.value.trim();
     addMessage(message, "user");
     chatInput.value = "";
-    addMessage(findAnswer(message), "ai");
+
+    addLoading();
+
+    fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userMessage: message })
+    })
+    .then(res => res.json())
+    .then(data => {
+      removeLoading();
+      if(data.reply) addMessage(data.reply, "ai");
+      else addMessage("Відповідь недоступна", "ai");
+    })
+    .catch(err => {
+      console.error(err);
+      removeLoading();
+      addMessage("Помилка при відправці повідомлення", "ai");
+    });
   }
 });
 
-// Мобільна адаптація
-chatInput.addEventListener("focus", () => { chatWidget.style.bottom = "20%"; chatMessages.scrollTop = chatMessages.scrollHeight; });
-chatInput.addEventListener("blur", () => { chatWidget.style.bottom = "20px"; });
-window.addEventListener("resize", () => { chatMessages.scrollTop = chatMessages.scrollHeight; });
-</script>
+// Збереження історії у localStorage
+function saveMessages() {
+  const msgs = [];
+  chatMessages.querySelectorAll("div").forEach(div => {
+    msgs.push({ text: div.textContent, className: div.className });
+  });
+  localStorage.setItem("gravityChatHistory", JSON.stringify(msgs));
+}
+function loadMessages() {
+  const msgs = JSON.parse(localStorage.getItem("gravityChatHistory") || "[]");
+  msgs.forEach(msg => {
+    const div = document.createElement("div");
+    div.textContent = msg.text;
+    div.className = msg.className;
+    chatMessages.appendChild(div);
+  });
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+loadMessages();
 
+// Піднімання чату при клавіатурі на мобільних
+chatInput.addEventListener("focus", () => {
+  chatWidget.style.bottom = "20%";
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+chatInput.addEventListener("blur", () => {
+  chatWidget.style.bottom = "90px";
+});
+
+// Підтримка resize
+window.addEventListener("resize", () => {
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+</script>
 
 </body>
 </html>
