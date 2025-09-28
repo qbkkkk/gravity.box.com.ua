@@ -366,7 +366,6 @@ systemButtons.forEach(btn => {
                 </div>
             </div>
 
-            <!-- 5. Престиж -->
             <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
                 <div class="mb-4">
                     <i data-lucide="star" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
@@ -380,8 +379,8 @@ systemButtons.forEach(btn => {
     Промо-ролик
 </a>
 
-<!-- Модалка -->
-<div id="promoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 transition-opacity duration-500 opacity-0">
+<!-- Модалка на повний екран -->
+<div id="promoModal" class="fixed inset-0 bg-black bg-opacity-70 hidden z-50 flex items-center justify-center transition-opacity duration-500 opacity-0">
     <div class="bg-white rounded-lg overflow-hidden w-11/12 md:w-1/3 lg:w-1/4 transform scale-75 transition-transform duration-500">
         <div class="flex justify-end p-2">
             <button id="closeModal" class="text-black text-xl">&times;</button>
@@ -404,7 +403,6 @@ const close = document.getElementById('closeModal');
 const video = document.getElementById('promoVideo');
 const modalContent = modal.querySelector('div');
 
-// Флаг для відтворення тільки один раз
 let firstPlay = true;
 
 // Відкрити модалку
@@ -417,7 +415,7 @@ button.addEventListener('click', function(e){
         modalContent.classList.add('scale-100');
     }, 10);
 
-    // Автоплей тільки при першому відкритті
+    // Автоплей тільки перший раз
     if(firstPlay){
         video.play();
         firstPlay = false;
@@ -430,19 +428,19 @@ function closeModal() {
     modalContent.classList.remove('scale-100');
     modalContent.classList.add('scale-75');
     video.pause();
-    // Не скидаємо currentTime, щоб користувач міг сам відтворити повтор
     setTimeout(() => modal.classList.add('hidden'), 500);
 }
 
 close.addEventListener('click', closeModal);
 
-// Закрити при кліку поза модалкою
+// Закрити при кліку поза модальним вікном
 modal.addEventListener('click', function(e){
     if(e.target === modal){
         closeModal();
     }
 });
 </script>
+
 
             <!-- 6. Готова документація -->
             <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
