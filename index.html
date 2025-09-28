@@ -1012,11 +1012,9 @@ document.addEventListener('DOMContentLoaded', () => {
   </footer>
 </div>
 
-   <script src="https://cdn.jsdelivr.net/npm/lucide/dist/lucide.min.js"></script>
-<script>
+    <script>
         // Initialize Lucide icons
         lucide.createIcons();
-
         // System switching functionality
         const systems = {
             power: { icon: 'zap', color: 'text-yellow-500', bg: 'bg-yellow-100', label: 'Електроживлення' },
@@ -1109,6 +1107,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initialize all icons
         lucide.createIcons();
+     // =========================
+        // Модальное окно (форма)
+        // =========================
+        const modal = document.getElementById("modal");
+        const openBtn = document.getElementById("cons"); // кнопка "Отримати консультацію"
+        const closeBtn = document.getElementById("closeModal");
+
+        if (openBtn) {
+          openBtn.onclick = () => modal.style.display = "block";
+        }
+        if (closeBtn) {
+          closeBtn.onclick = () => modal.style.display = "none";
+        }
+        window.onclick = (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        };
+    </script>
+
 
 <div id="gravity-chat-button">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
