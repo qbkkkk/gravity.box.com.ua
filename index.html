@@ -374,12 +374,75 @@ systemButtons.forEach(btn => {
                 </div>
                 <div class="space-y-3">
                     <p class="text-slate-600">Робота з преміум-сегментом та підвищення статусу серед клієнтів</p>
-                    <a href="#" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
-                        <i data-lucide="star" class="w-4 h-4"></i>
-                        Промо-ролик
-                    </a>
-                </div>
+                    <!-- Кнопка Промо-ролик -->
+<a href="#" id="promoButton" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
+    <i data-lucide="star" class="w-4 h-4"></i>
+    Промо-ролик
+</a>
+
+<!-- Модалка -->
+<div id="promoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 transition-opacity duration-500 opacity-0">
+    <div class="bg-white rounded-lg overflow-hidden w-11/12 md:w-1/3 lg:w-1/4 transform scale-75 transition-transform duration-500">
+        <div class="flex justify-end p-2">
+            <button id="closeModal" class="text-black text-xl">&times;</button>
+        </div>
+        <div class="p-2">
+            <div class="relative pb-[177.78%] h-0">
+                <video id="promoVideo" controls class="absolute top-0 left-0 w-full h-full">
+                    <source src="https://res.cloudinary.com/dzjg3rhyu/video/upload/v1759091469/Gravity_box.mp4" type="video/mp4">
+                    Ваш браузер не підтримує відео.
+                </video>
             </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const button = document.getElementById('promoButton');
+const modal = document.getElementById('promoModal');
+const close = document.getElementById('closeModal');
+const video = document.getElementById('promoVideo');
+const modalContent = modal.querySelector('div');
+
+// Флаг для відтворення тільки один раз
+let firstPlay = true;
+
+// Відкрити модалку
+button.addEventListener('click', function(e){
+    e.preventDefault();
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modalContent.classList.remove('scale-75');
+        modalContent.classList.add('scale-100');
+    }, 10);
+
+    // Автоплей тільки при першому відкритті
+    if(firstPlay){
+        video.play();
+        firstPlay = false;
+    }
+});
+
+// Закрити модалку
+function closeModal() {
+    modal.classList.add('opacity-0');
+    modalContent.classList.remove('scale-100');
+    modalContent.classList.add('scale-75');
+    video.pause();
+    // Не скидаємо currentTime, щоб користувач міг сам відтворити повтор
+    setTimeout(() => modal.classList.add('hidden'), 500);
+}
+
+close.addEventListener('click', closeModal);
+
+// Закрити при кліку поза модалкою
+modal.addEventListener('click', function(e){
+    if(e.target === modal){
+        closeModal();
+    }
+});
+</script>
 
             <!-- 6. Готова документація -->
             <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
