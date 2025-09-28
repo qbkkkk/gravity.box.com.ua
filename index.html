@@ -246,28 +246,36 @@ systemButtons.forEach(btn => {
 
   <!-- What is Gravity Box -->
 <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            
-            <!-- Текстова частина -->
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold text-slate-900">Що таке Gravity Box?</h2>
-                <p class="text-lg text-slate-600">
-                    Це революційний електричний щит, що об'єднує всі системи розумного дому в одному компактному рішенні. 
-                    Інтернет, Wi-Fi, охорона, відеоспостереження та автоматизація — все працює з одного щита.
-                </p>
-                <p class="text-slate-600">
-                    Замість хаосу кабелів і десятків окремих блоків — одне елегантне рішення, яке електрик може встановити за лічені години.
-                </p>
-            </div>
-
-            <!-- Картинка з hover анімацією -->
-            <div class="relative rounded-xl overflow-hidden shadow-lg transform transition-transform duration-500 hover:-translate-y-4 hover:scale-105">
-                <img src="images/Gravity_Box.png" alt="Gravity Box" class="w-full rounded-xl shadow-xl block">
-            </div>
-            
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Ліва частина: текст + картинка -->
+      <div class="flex flex-col space-y-8">
+        <!-- Текст -->
+        <div class="space-y-6">
+          <h2 class="text-3xl font-bold text-slate-900">Що таке Gravity Box?</h2>
+          <p class="text-lg text-slate-600">
+            Це революційний електричний щит, що об'єднує всі системи розумного дому в одному компактному рішенні. 
+            Інтернет, Wi-Fi, охорона, відеоспостереження та автоматизація — все працює з одного щита.
+          </p>
+          <p class="text-slate-600">
+            Замість хаосу кабелів і десятків окремих блоків — одне елегантне рішення, яке електрик може встановити за лічені години.
+          </p>
         </div>
+
+        <!-- Картинка -->
+        <div class="relative rounded-xl overflow-hidden shadow-lg transform transition-transform duration-500 hover:-translate-y-4 hover:scale-105">
+          <img src="images/Gravity_Box.png" alt="Gravity Box" class="w-full rounded-xl shadow-xl block">
+        </div>
+      </div>
+
+      <!-- Права частина: вертикальний банер -->
+      <div class="flex justify-center">
+        <img src="images/Frame 217066.png" alt="Gravity Box Banner" class="max-h-[500px] rounded-lg shadow-xl">
+      </div>
+
     </div>
+  </div>
 </section>
 
 
@@ -281,6 +289,7 @@ systemButtons.forEach(btn => {
   animation: fadeIn 1s ease-out forwards;
 }
 </style>
+
 
     <!-- Benefits for Electricians -->
     <section class="py-20 bg-white">
