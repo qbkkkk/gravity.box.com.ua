@@ -689,7 +689,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     <!-- How to Start -->
-      <section class="py-20 bg-slate-50">
+     <section class="py-20 bg-slate-50">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">
       Як почати роботу з Gravity
@@ -745,6 +745,25 @@ document.addEventListener("DOMContentLoaded", () => {
             </p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const steps = document.querySelectorAll(".animate-step");
+
+    steps.forEach(step => {
+      const delay = parseInt(step.dataset.delay) || 0;
+      setTimeout(() => {
+        step.classList.remove("opacity-0");
+        step.classList.add("opacity-100", "transition-opacity", "duration-700");
+      }, delay);
+    });
+  });
+</script>
+
 
         <div class="flex gap-4 flex-wrap">
     <a href="https://gravity.com.ua/kontakty/" target="_blank" class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
