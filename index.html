@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gravity Box - для електриків</title>
     <meta name="description" content="Готовий електрощит з вбудованим Розумним Домом для встановлення електриками">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -33,10 +33,10 @@
             }
         }
     </script>
-    
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    
+
     <style>
         /* Custom animations */
         @keyframes fadeInUp {
@@ -49,7 +49,7 @@
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
@@ -60,41 +60,41 @@
                 transform: translateX(0);
             }
         }
-        
+
         .animate-fade-in-up {
             animation: fadeInUp 0.7s ease-out forwards;
         }
-        
+
         .animate-fade-in-left {
             animation: fadeInLeft 0.7s ease-out forwards;
         }
-        
+
         .opacity-0 {
             opacity: 0;
         }
-        
+
         /* Accordion styles */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease;
         }
-        
+
         .accordion-content.open {
             max-height: 200px;
         }
-        
+
         .accordion-trigger::after {
             content: '+';
             float: right;
             font-size: 1.2em;
             transition: transform 0.3s ease;
         }
-        
+
         .accordion-trigger.open::after {
             transform: rotate(45deg);
         }
-        
+
         /* Tech pattern background */
         .tech-pattern {
             background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0);
@@ -104,158 +104,141 @@
 </head>
 <body class="min-h-screen bg-white">
     <!-- Hero Section -->
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gravity Box - для електриків</title>
-    <meta name="description" content="Готовий електрощит з вбудованим Розумним Домом для встановлення електриками">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.259.0/dist/lucide.min.js"></script>
-</head>
-<body class="bg-slate-900 text-white">
-
 <section class="relative overflow-hidden bg-gradient-to-br from-black via-orange-900 to-orange-800 min-h-[120vh] pt-16">
-    <!-- Tech Background Pattern -->
+     <!-- Tech Background Pattern -->
     <div class="absolute inset-0 opacity-10 tech-pattern"></div>
 
     <div class="container mx-auto px-4 relative z-10">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
             <!-- Ліва колонка -->
             <div class="space-y-8 -mt-10 pl-8 lg:pl-16">
-                <!-- Логотип -->
-                <img src="https://gravity.com.ua/wp-content/uploads/2016/04/Logo_for_site-min.png" 
-                     alt="Gravity Box Logo" 
-                     class="h-16 w-auto">
+    <!-- Логотип -->
+    <img src="https://gravity.com.ua/wp-content/uploads/2016/04/Logo_for_site-min.png" 
+         alt="Gravity Box Logo" 
+         class="h-16 w-auto">
 
-                <div class="space-y-4">
-                    <h1 class="text-5xl font-bold text-white">
-                        Gravity Box
-                        <span class="block text-yellow-400">для електриків</span>
-                    </h1>
-                    <p class="text-xl text-orange-200">
-                        Готовий електрощит<br>
-                        з вбудованим Розумним Домом<br>
-                        для встановлення електриками
-                    </p>
-                </div>
-                
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
-                        <span class="text-orange-200">Детальний проєкт електрики</span>
-                    </div>
-                    <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
-                        <span class="text-orange-200">Навчання з підключення</span>
-                    </div>
-                    <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
-                        <span class="text-orange-200">Преміальна електрика та європейське обладнання</span>
-                    </div>
-                    <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
-                        <span class="text-orange-200">Технічна підтримка 24/7</span>
-                    </div>
-                </div>
+    <div class="space-y-4 ">
+        <h1 class="text-5xl font-bold text-white">
+            Gravity Box
+            <span class="block text-yellow-400">для електриків</span>
+        </h1>
+        <p class="text-xl text-orange-200">
+            Готовий електрощит<br>
+            з вбудованим Розумним Домом<br>
+            для встановлення електриками
+        </p>
+    </div>
 
-                <div class="flex gap-4 flex-wrap pl-2 lg:pl-4 mb-24 pb-12">
-                    <a href="https://gravity.com.ua/kontakty/" target="_blank"
-                       class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
-                        <i data-lucide="phone" class="w-4 h-4"></i>
-                        <span>Замовити щит</span>
-                    </a>
-
-                    <a href="#cons"
-                       class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        <span>Стати партнером</span>
-                    </a>
-                </div>
+        <div class="space-y-4">
+            <!-- пункти -->
+            <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                <span class="text-orange-200">Детальний проєкт електрики</span>
             </div>
-            
-            <!-- Права колонка: панель -->
-            <div class="relative">
-                <div class="bg-gradient-to-br from-orange-700 to-orange-800 p-8 rounded-2xl shadow-2xl border border-orange-600">
-                    <!-- Main Panel -->
-                    <div class="bg-orange-900 rounded-xl p-6 mb-6 border border-orange-600">
-                        <div class="text-center mb-4">
-                            <h3 class="text-white font-semibold">Gravity Smart Panel</h3>
-                            <div class="w-full h-2 bg-orange-700 rounded-full mt-2">
-                                <div class="w-3/4 h-full bg-green-500 rounded-full transition-all duration-500"></div>
-                            </div>
-                            <span class="text-green-400 text-sm">Система активна</span>
-                        </div>
-
-                        <!-- System Icons Grid -->
-                        <div class="grid grid-cols-2 gap-4">
-                            <button class="system-btn p-4 rounded-lg border-2 bg-yellow-100 border-yellow-500 text-yellow-500 hover:scale-105 transition-all" data-system="power">
-                                <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2"></i>
-                                <span class="text-xs font-medium break-words">Електроживлення</span>
-                            </button>
-                            <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400 hover:scale-105 transition-all" data-system="wifi">
-                                <i data-lucide="wifi" class="w-8 h-8 mx-auto mb-2"></i>
-                                <span class="text-xs font-medium">Інтернет & Wi-Fi</span>
-                            </button>
-                            <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400 hover:scale-105 transition-all" data-system="security">
-                                <i data-lucide="shield" class="w-8 h-8 mx-auto mb-2"></i>
-                                <span class="text-xs font-medium">Охорона</span>
-                            </button>
-                            <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400 hover:scale-105 transition-all" data-system="smart">
-                                <i data-lucide="home" class="w-8 h-8 mx-auto mb-2"></i>
-                                <span class="text-xs font-medium">Розумний дім</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Active System Info -->
-                    <div class="mt-6 p-4 bg-orange-800/50 rounded-lg border border-orange-600" id="active-info">
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="zap" class="w-6 h-6 text-yellow-500" id="active-system-icon"></i>
-                            <div>
-                                <h4 class="text-white font-medium" id="active-system-label">Електроживлення</h4>
-                                <p class="text-orange-400 text-sm" id="active-system-desc">Споживання енергії: 1200 Вт</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                <span class="text-orange-200">Навчання з підключення</span>
             </div>
+            <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                <span class="text-orange-200">Преміальна електрика та європейське обладнання</span>
+            </div>
+            <div class="flex items-center gap-3 group hover:bg-orange-800/50 p-2 rounded-lg transition-all cursor-pointer">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                <span class="text-orange-200">Технічна підтримка 24/7</span>
+            </div>
+        </div>
 
+        <div class="flex gap-4 flex-wrap pl-2 lg:pl-4 mb-24 pb-12">
+        <a href="https://gravity.com.ua/kontakty/" target="_blank"
+           class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4"></i>
+            <span>Замовити щит</span>
+        </a>
+
+        <a href="#cons"
+           class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Стати партнером</span>
+        </a>
         </div>
     </div>
-</section>
+
+    <!-- Права колонка: панель -->
+    <div class="relative">
+        <div class="bg-gradient-to-br from-orange-700 to-orange-800 p-8 rounded-2xl shadow-2xl border border-orange-600">
+            <!-- Main Panel -->
+            <div class="bg-orange-900 rounded-xl p-6 mb-6 border border-orange-600">
+                <div class="text-center mb-4">
+                    <h3 class="text-white font-semibold">Gravity Smart Panel</h3>
+                    <div class="w-full h-2 bg-orange-700 rounded-full mt-2">
+                        <div class="w-3/4 h-full bg-green-500 rounded-full"></div>
+                    </div>
+                    <span class="text-green-400 text-sm">Система активна</span>
+                </div>
+
+                <!-- System Icons Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="system-btn p-4 rounded-lg border-2 bg-yellow-100 border-yellow-500 text-yellow-500" data-system="power">
+                        <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2"></i>
+                        <span class="text-xs font-medium break-words">Електроживлення</span>
+                    </button>
+                    <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400" data-system="wifi">
+                        <i data-lucide="wifi" class="w-8 h-8 mx-auto mb-2"></i>
+                        <span class="text-xs font-medium">Інтернет & Wi-Fi</span>
+                    </button>
+                    <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400" data-system="security">
+                        <i data-lucide="shield" class="w-8 h-8 mx-auto mb-2"></i>
+                        <span class="text-xs font-medium">Охорона</span>
+                    </button>
+                    <button class="system-btn p-4 rounded-lg border-2 bg-orange-800 border-orange-600 text-orange-400" data-system="smart">
+                        <i data-lucide="home" class="w-8 h-8 mx-auto mb-2"></i>
+                        <span class="text-xs font-medium">Розумний дім</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active System Info -->
+            <div class="mt-6 p-4 bg-orange-800/50 rounded-lg border border-orange-600" id="active-info">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="zap" class="w-6 h-6 text-yellow-500" id="active-system-icon"></i>
+                    <div>
+                        <h4 class="text-white font-medium" id="active-system-label">Електроживлення</h4>
+                        <p class="text-orange-400 text-sm" id="active-system-desc">Споживання енергії: 1200 Вт</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    lucide.replace(); // ініціалізація всіх Lucide іконок
+const systemButtons = document.querySelectorAll('.system-btn');
+const activeIcon = document.getElementById('active-system-icon');
+const activeLabel = document.getElementById('active-system-label');
+const activeDesc = document.getElementById('active-system-desc');
 
-    const systemButtons = document.querySelectorAll('.system-btn');
-    const activeIcon = document.getElementById('active-system-icon');
-    const activeLabel = document.getElementById('active-system-label');
-    const activeDesc = document.getElementById('active-system-desc');
+// Дані для кожної кнопки
+const systemData = {
+    power: { icon: 'zap', label: 'Електроживлення', desc: 'Споживання енергії: 1200 Вт' },
+    wifi: { icon: 'wifi', label: 'Інтернет & Wi-Fi', desc: 'Підключено 5 пристроїв' },
+    security: { icon: 'shield', label: 'Система безпеки', desc: 'Камери та сенсори активні' },
+    smart: { icon: 'home', label: 'Розумний дім', desc: 'Освітлення та клімат під контролем' },
+};
 
-    const systemData = {
-        power: { icon: 'zap', label: 'Електроживлення', desc: 'Споживання енергії: 1200 Вт' },
-        wifi: { icon: 'wifi', label: 'Інтернет & Wi-Fi', desc: 'Підключено 5 пристроїв' },
-        security: { icon: 'shield', label: 'Система безпеки', desc: 'Камери та сенсори активні' },
-        smart: { icon: 'home', label: 'Розумний дім', desc: 'Освітлення та клімат під контролем' },
-    };
+systemButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const system = btn.getAttribute('data-system');
+        const data = systemData[system];
 
-    systemButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const system = btn.getAttribute('data-system');
-            const data = systemData[system];
+        // Змінюємо іконку, текст і опис
+        activeIcon.setAttribute('data-lucide', data.icon);
+        activeLabel.textContent = data.label;
+        activeDesc.textContent = data.desc;
 
-            activeIcon.setAttribute('data-lucide', data.icon);
-            activeLabel.textContent = data.label;
-            activeDesc.textContent = data.desc;
-
-            // Перемальовуємо Lucide іконки після зміни
-            lucide.replace();
-        });
+        // Перемальовуємо Lucide іконки
+        if (window.lucide) lucide.replace();
     });
 });
 </script>
