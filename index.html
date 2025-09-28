@@ -367,21 +367,21 @@ systemButtons.forEach(btn => {
             </div>
 
             <!-- 5. Престиж -->
-            <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
-                <div class="mb-4">
-                    <i data-lucide="star" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
-                    <h3 class="text-xl font-semibold">Престиж</h3>
-                </div>
-                <div class="space-y-3">
-                    <p class="text-slate-600">Робота з преміум-сегментом та підвищення статусу серед клієнтів</p>
-                    <a href="#" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
-                        <i data-lucide="star" class="w-4 h-4"></i>
-                        Промо-ролик
-                    </a>
-                </div>
-            </div>
+           <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
+    <div class="mb-4">
+        <i data-lucide="star" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
+        <h3 class="text-xl font-semibold">Престиж</h3>
+    </div>
+    <div class="space-y-3">
+        <p class="text-slate-600">Робота з преміум-сегментом та підвищення статусу серед клієнтів</p>
+        <a href="#" id="promoButton" class="border border-slate-300 hover:bg-slate-50 w-full transition-colors px-4 py-2 rounded-lg text-sm inline-flex items-center justify-center gap-2">
+            <i data-lucide="star" class="w-4 h-4"></i>
+            Промо-ролик
+        </a>
+    </div>
+</div>
 
-            <!-- 6. Готова документація -->
+             <!-- 6. Готова документація -->
             <div class="border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer bg-white rounded-lg p-6">
                 <div class="mb-4">
                     <i data-lucide="file-text" class="w-8 h-8 text-yellow-500 mb-2 transition-transform"></i>
@@ -398,7 +398,76 @@ systemButtons.forEach(btn => {
 
         </div>
     </div>
+        
+        <!-- Модалка -->
+<div id="promoModal" class="fixed inset-0 bg-black bg-opacity-70 hidden z-50 flex items-center justify-center transition-opacity duration-500 opacity-0">
+    <div id="modalContent" class="bg-white rounded-lg overflow-hidden w-11/12 md:w-1/3 lg:w-1/4 transform scale-75 transition-transform duration-500">
+        <div class="flex justify-end p-2">
+            <button id="closeModal" class="text-black text-xl">&times;</button>
+        </div>
+        <div class="p-2">
+            <div class="relative pb-[177.78%] h-0">
+                <video id="promoVideo" controls class="absolute top-0 left-0 w-full h-full">
+                    <source src="https://res.cloudinary.com/dzjg3rhyu/video/upload/v1759091469/Gravity_box.mp4" type="video/mp4">
+                    Ваш браузер не підтримує відео.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
 </section>
+
+<script>
+const button = document.getElementById('promoButton');
+const modal = document.getElementById('promoModal');
+const modalContent = document.getElementById('modalContent');
+const close = document.getElementById('closeModal');
+const video = document.getElementById('promoVideo');
+
+// Відкрити модалку і запускати відео
+button.addEventListener('click', function(e){
+    e.preventDefault();
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modalContent.style.transform = 'scale(1)';
+        video.currentTime = 0; // почати з початку
+        video.play();
+    }, 10);
+});
+
+// Закрити модалку
+function closeModal() {
+    modalContent.style.transform = 'scale(0.75)';
+    modal.classList.add('opacity-0');
+    video.pause();
+    video.currentTime = 0;
+    modal.style.pointerEvents = 'none'; 
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.style.pointerEvents = 'auto';
+    }, 500);
+}
+
+// Кнопка хрестик
+close.addEventListener('click', closeModal);
+
+// Клік на фон
+modal.addEventListener('click', function(e){
+    if(e.target === modal){
+        closeModal();
+    }
+});
+
+// Автоматичне закриття після завершення відео
+video.addEventListener('ended', closeModal);
+</script>
+
+<style>
+#modalContent {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+</style>
 
     <!-- How it Works -->
     <section class="py-20 bg-slate-50">
