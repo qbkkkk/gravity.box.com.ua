@@ -742,28 +742,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3 class="font-semibold mb-2">Почніть заробляти</h3>
             <p class="text-slate-600">
               Встановлюйте та отримуйте в 3-4 рази більший прибуток
-            </p>
+           </p>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const steps = document.querySelectorAll(".animate-step");
-
-    steps.forEach(step => {
-      const delay = parseInt(step.dataset.delay) || 0;
-      setTimeout(() => {
-        step.classList.remove("opacity-0");
-        step.classList.add("opacity-100", "transition-opacity", "duration-700");
-      }, delay);
-    });
-  });
-</script>
-
 
         <div class="flex gap-4 flex-wrap">
     <a href="https://gravity.com.ua/kontakty/" target="_blank" class="bg-yellow-500 hover:bg-yellow-400 text-black hover:scale-105 transition-all shadow-lg hover:shadow-yellow-500/25 px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center gap-2">
@@ -824,6 +805,23 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 </div>
 </div>
+    
+    </section>
+        
+         <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const steps = document.querySelectorAll(".animate-step");
+
+    steps.forEach(step => {
+      const delay = parseInt(step.dataset.delay) || 0;
+      setTimeout(() => {
+        step.classList.remove("opacity-0");
+        step.classList.add("opacity-100", "transition-opacity", "duration-700");
+      }, delay);
+    });
+  });
+</script>
+
     
     </section>
 
