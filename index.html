@@ -401,47 +401,76 @@ systemButtons.forEach(btn => {
   </div>
 </section>
 
-<!-- Модальне відео -->
-<div id="videoModal"
-  class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50">
-  <div class="relative w-full max-w-4xl h-[80vh] bg-black rounded-xl overflow-hidden shadow-lg">
-    <video id="promoVideo" class="w-full h-full object-contain" controls autoplay>
-      <source src="https://res.cloudinary.com/dzjg3rhyu/video/upload/v1759091469/Gravity_box.mp4" type="video/mp4">
-      Ваш браузер не підтримує відео.
-    </video>
-    <button id="closeModal"
-      class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-yellow-400 hover:text-black transition">
-      ✕
-    </button>
-  </div>
-</div>
-
-<!-- Модальний калькулятор -->
-<div id="profitModal"
-  class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50">
-  <div class="relative w-full max-w-md bg-white rounded-xl p-6 shadow-lg">
-    <h3 class="text-2xl font-bold mb-6 text-center text-slate-900">Калькулятор прибутку</h3>
-    
-    <label class="block mb-2 text-slate-700 font-medium">Вартість однієї роботи (€):</label>
-    <input type="number" id="jobCost" class="w-full border border-slate-300 rounded px-3 py-2 mb-4 focus:ring-2 focus:ring-yellow-400 focus:outline-none" placeholder="Наприклад 100">
-    
-    <label class="block mb-2 text-slate-700 font-medium">Кількість робіт:</label>
-    <input type="number" id="jobCount" class="w-full border border-slate-300 rounded px-3 py-2 mb-4 focus:ring-2 focus:ring-yellow-400 focus:outline-none" placeholder="Наприклад 5">
-    
-    <div class="text-center">
-      <p id="profitResult" class="text-lg font-semibold text-yellow-500 mt-4 transition-colors"></p>
-    </div>
-
-    <button id="closeProfitModal"
-      class="absolute top-3 right-3 text-black bg-gray-200 rounded-full p-2 hover:bg-yellow-400 hover:text-black transition">
-      ✕
-    </button>
-  </div>
-</div>
-
 <script>
-  // Відео модалка
-  const promoButton = document.getElementById
+  // --- Модалка відео ---
+  const promoButton = document.getElementById("promoButton");
+  const videoModal = document.getElementById("videoModal");
+  const promoVideo = document.getElementById("promoVideo");
+  const closeModal = document.getElementById("closeModal");
+
+  promoButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    videoModal.classList.remove("hidden");
+    promoVideo.currentTime = 0;
+    promoVideo.play();
+  });
+
+  closeModal.addEventListener("click", () => {
+    videoModal.classList.add("hidden");
+    promoVideo.pause();
+  });
+
+  videoModal.addEventListener("click", (e) => {
+    if (e.target === videoModal) {
+      videoModal.classList.add("hidden");
+      promoVideo.pause();
+    }
+  });
+
+  promoVideo.addEventListener("ended", () => {
+    videoModal.classList.add("hidden");
+  });
+
+  // --- Модалка калькулятора ---
+  const profitButton = document.getElementById("profitButton");
+  const profitModal = document.getElementById("profitModal");
+  const closeProfitModal = document.getElementById("closeProfitModal");
+  const jobCost = document.getElementById("jobCost");
+  const jobCount = document.getElementById("jobCount");
+  const profitResult = document.getElementById("profitResult");
+
+  const marginMultiplier = 3; // маржа Gravity
+
+  profitButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    profitModal.classList.remove("hidden");
+    jobCost.value = "";
+    jobCount.value = "";
+    profitResult.textContent = "";
+  });
+
+  closeProfitModal.addEventListener("click", () => {
+    profitModal.classList.add("hidden");
+  });
+
+  profitModal.addEventListener("click", (e) => {
+    if (e.target === profitModal) profitModal.classList.add("hidden");
+  });
+
+  function updateProfit() {
+    const cost = parseFloat(jobCost.value);
+    const count = parseInt(jobCount.value);
+    if (isNaN(cost) || isNaN(count) || cost <= 0 || count <= 0) {
+      profitResult.textContent = "";
+      return;
+    }
+    const profit = cost * count * marginMultiplier;
+    profitResult.textContent = `Прибуток: €${profit.toLocaleString()}`;
+  }
+
+  jobCost.addEventListener("input", updateProfit);
+  jobCount.addEventListener("input", updateProfit);
+</script>
 
 
 
@@ -798,7 +827,7 @@ systemButtons.forEach(btn => {
         </div>
       </div>
 
-      <!-- FAQ Item -->
+      /*FAQ Item */
       <div class="group border border-slate-200 rounded-lg overflow-hidden shadow-sm">
         <div
           class="flex justify-between items-center px-6 py-4 cursor-pointer text-slate-800 font-medium hover:bg-slate-50 transition"
@@ -816,7 +845,7 @@ systemButtons.forEach(btn => {
         </div>
       </div>
 
-      <!-- FAQ Item -->
+      /* FAQ Item */
       <div class="group border border-slate-200 rounded-lg overflow-hidden shadow-sm">
         <div
           class="flex justify-between items-center px-6 py-4 cursor-pointer text-slate-800 font-medium hover:bg-slate-50 transition"
