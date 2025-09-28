@@ -1113,16 +1113,20 @@ const chatMessages = document.getElementById("chat-messages");
 const WEBHOOK_URL = "https://qbkkkk.app.n8n.cloud/webhook/gravity-chat";
 
 // Відкрити/закрити чат
-chatButton.addEventListener("click", () => {
+chatButton.addEventListener("click", (e) => {
+  e.stopPropagation(); // щоб клік по кнопці не тригерив закриття
   chatWidget.classList.toggle("open");
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
+// Кліки всередині чату не закривають його
+chatWidget.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
 // Закриття при кліку поза вікном
-document.addEventListener("click", (e) => {
-  if (!chatWidget.contains(e.target) && !chatButton.contains(e.target)) {
-    chatWidget.classList.remove("open");
-  }
+document.addEventListener("click", () => {
+  chatWidget.classList.remove("open");
 });
 
 // Додаємо повідомлення
