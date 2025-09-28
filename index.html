@@ -409,8 +409,8 @@ systemButtons.forEach(btn => {
 
 <!-- Модальне вікно -->
 <div id="videoModal"
-  class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
-  <div class="relative w-full max-w-4xl h-[80vh] bg-black rounded-xl overflow-hidden">
+  class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50">
+  <div class="relative w-full max-w-4xl h-[80vh] bg-black rounded-xl overflow-hidden shadow-lg">
     <video id="promoVideo" class="w-full h-full object-contain" controls autoplay>
       <source
         src="https://res.cloudinary.com/dzjg3rhyu/video/upload/v1759091469/Gravity_box.mp4"
@@ -423,7 +423,6 @@ systemButtons.forEach(btn => {
     </button>
   </div>
 </div>
-
 
 <script>
   const promoButton = document.getElementById("promoButton");
