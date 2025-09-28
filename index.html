@@ -1144,7 +1144,7 @@ chatInput.addEventListener("keydown", e => {
         removeLoading();
         if(data.reply) addMessage(data.reply, "ai");
         else addMessage("Відповідь недоступна", "ai");
-      }, 400);
+      }, 1000);
     })
     .catch(err => {
       setTimeout(() => {
